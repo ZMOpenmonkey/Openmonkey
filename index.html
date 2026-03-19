@@ -10,17 +10,191 @@
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family: 'Inter', sans-serif; background: #f5f7fa; color: #1e293b; padding:20px; min-height:100vh; display:flex; align-items:center; justify-content:center; }
         .container { max-width:1400px; width:100%; margin:0 auto; }
-        #login-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; z-index:1000; }
-        .login-card { background:white; border-radius:24px; padding:40px; width:90%; max-width:400px; box-shadow:0 20px 40px rgba(0,0,0,0.2); text-align:center; }
-        .login-card h2 { font-size:2rem; font-weight:700; color:#1e2b4a; margin-bottom:8px; }
-        .login-card .subtitle { color:#64748b; margin-bottom:32px; font-size:0.95rem; }
-        .login-card input { width:100%; padding:14px 16px; margin-bottom:16px; border:2px solid #e2e8f0; border-radius:12px; font-size:1rem; transition:0.2s; }
-        .login-card input:focus { border-color:#3b5a9e; outline:none; }
-        .login-card button { width:100%; padding:14px; background:#1e2b4a; color:white; border:none; border-radius:40px; font-size:1rem; font-weight:600; cursor:pointer; transition:0.2s; margin-top:8px; }
-        .login-card button:hover { background:#2d3a5e; }
-        .login-error { color:#c62828; font-size:0.9rem; margin-top:12px; min-height:20px; }
-        .auth-toggle { margin-top:16px; color:#1e2b4a; cursor:pointer; font-size:0.9rem; text-decoration:underline; }
-        .auth-toggle:hover { color:#3b5a9e; }
+
+        /* 登录遮罩层新样式 */
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f94c2b 0%, #f2703a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .login-container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 32px;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+        .login-card {
+            flex: 1;
+            margin-right: 20px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .login-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e2b4a;
+            margin-bottom: 8px;
+        }
+        .login-card .subtitle {
+            color: #64748b;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+        .login-card input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .login-card input:focus {
+            border-color: #3b5a9e;
+            outline: none;
+        }
+        .login-card button {
+            width: 100%;
+            padding: 14px;
+            background: #1e2b4a;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 8px;
+        }
+        .login-card button:hover {
+            background: #2d3a5e;
+        }
+        .login-error {
+            color: #c62828;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            min-height: 20px;
+        }
+        .auth-toggle {
+            margin-top: 16px;
+            color: #1e2b4a;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: underline;
+        }
+        .auth-toggle:hover {
+            color: #3b5a9e;
+        }
+        .login-info {
+            flex: 0.8;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+        }
+        .login-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .login-info p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .login-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .login-info li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .login-info li::before {
+            content: "✓";
+            font-weight: bold;
+            margin-right: 10px;
+            background: white;
+            color: #f94c2b;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-qr-card {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(5px);
+        }
+        .login-qr-card > div:first-child {
+            flex: 1;
+            color: white;
+        }
+        .login-qr-card > div:first-child div:first-child {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .login-qr-card > div:first-child div:last-child {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .login-qr-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            .login-card {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .login-info {
+                text-align: center;
+                padding: 20px;
+            }
+            .login-info li {
+                justify-content: center;
+            }
+            .login-qr-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .login-qr-card > div:first-child {
+                text-align: center;
+            }
+        }
+
+        /* 原有其他样式保持不变 */
         #main-app { display:none; }
         .header { background:linear-gradient(135deg,#1e2b4a,#2d3a5e); color:white; padding:20px 30px; border-radius:20px; margin-bottom:25px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; }
         .header-left { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
@@ -105,27 +279,48 @@
     </style>
 </head>
 <body>
-    <!-- 登录遮罩层 -->
+    <!-- 登录遮罩层（新设计） -->
     <div id="login-overlay">
-        <div class="login-card">
-            <div id="login-form">
-                <h2>OPENMONKEY AI</h2>
-                <div class="subtitle">智能运营诊断系统 · 登录</div>
-                <input type="text" id="login-username" placeholder="用户名">
-                <input type="password" id="login-password" placeholder="密码">
-                <button onclick="handleLogin()">登 录</button>
-                <div id="login-error" class="login-error"></div>
-                <div class="auth-toggle" onclick="showRegister()">没有账号？立即注册</div>
+        <div class="login-container">
+            <div class="login-card">
+                <div id="login-form">
+                    <h2>OPENMONKEY AI</h2>
+                    <div class="subtitle">智能运营诊断系统 · 登录</div>
+                    <input type="text" id="login-username" placeholder="用户名">
+                    <input type="password" id="login-password" placeholder="密码">
+                    <button onclick="handleLogin()">登 录</button>
+                    <div id="login-error" class="login-error"></div>
+                    <div class="auth-toggle" onclick="showRegister()">没有账号？立即注册</div>
+                </div>
+                <div id="register-form" style="display: none;">
+                    <h2>注册新账号</h2>
+                    <div class="subtitle">创建普通用户账户</div>
+                    <input type="text" id="reg-username" placeholder="用户名">
+                    <input type="password" id="reg-password" placeholder="密码">
+                    <input type="password" id="reg-confirm" placeholder="确认密码">
+                    <button onclick="handleRegister()">注 册</button>
+                    <div id="register-error" class="login-error"></div>
+                    <div class="auth-toggle" onclick="showLogin()">返回登录</div>
+                </div>
             </div>
-            <div id="register-form" style="display: none;">
-                <h2>注册新账号</h2>
-                <div class="subtitle">创建普通用户账户</div>
-                <input type="text" id="reg-username" placeholder="用户名">
-                <input type="password" id="reg-password" placeholder="密码">
-                <input type="password" id="reg-confirm" placeholder="确认密码">
-                <button onclick="handleRegister()">注 册</button>
-                <div id="register-error" class="login-error"></div>
-                <div class="auth-toggle" onclick="showLogin()">返回登录</div>
+            <div class="login-info">
+                <h2>OPENMONKEY AI</h2>
+                <p>智能运营诊断系统，为您的 Shopee 店铺赋能</p>
+                <ul>
+                    <li>基于 DeepSeek AI 的智能诊断</li>
+                    <li>店铺数据一键导入，自动分析</li>
+                    <li>广告效果追踪，优化ROAS</li>
+                    <li>安全可靠，数据隔离</li>
+                    <li>会员余额管理，按次付费</li>
+                </ul>
+                <!-- 登录界面的二维码卡片 -->
+                <div class="login-qr-card">
+                    <div>
+                        <div>💬 联系管理员</div>
+                        <div>扫码添加微信，充值诊断次数</div>
+                    </div>
+                    <img src="wechat_qr.png" alt="管理员微信">
+                </div>
             </div>
         </div>
     </div>
@@ -227,10 +422,20 @@
             </div>
         </div>
 
-        <!-- 智能诊断（无品牌提示） -->
+        <!-- 智能诊断（含充值二维码） -->
         <div id="panel-deepseek" class="panel" style="display: none;">
             <div class="card">
                 <div class="card-title">🔮 智能诊断</div>
+                <!-- 充值二维码卡片 -->
+                <div style="margin-bottom:20px; display:flex; flex-wrap:wrap; gap:15px; align-items:center; background:#f5f5f5; padding:15px; border-radius:12px; border-left:4px solid #ff9800;">
+                    <div style="flex:2; min-width:200px;">
+                        <div style="font-size:1rem; font-weight:600; color:#333; margin-bottom:5px;">💡 余额不足？</div>
+                        <div style="font-size:0.9rem; color:#666;">扫码添加管理员微信，充值诊断次数。</div>
+                    </div>
+                    <div style="flex:1; text-align:center;">
+                        <img src="wechat_qr.png" alt="管理员微信" style="max-width:100px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="runDeepSeekAnalysis('overview')">📊 整体诊断</button>
                     <button class="btn btn-primary" onclick="runDeepSeekAnalysis('ads')">📈 广告分析</button>
