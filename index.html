@@ -43,11 +43,23 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             text-align: center;
         }
+        .login-card .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .login-card .title-wrapper img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
         .login-card h2 {
             font-size: 2rem;
             font-weight: 700;
             color: #1e2b4a;
-            margin-bottom: 8px;
+            margin: 0;
         }
         .login-card .subtitle {
             color: #64748b;
@@ -144,10 +156,10 @@
             margin-top: 30px;
             background: rgba(255,255,255,0.2);
             border-radius: 16px;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             backdrop-filter: blur(5px);
         }
         .login-qr-card > div:first-child {
@@ -155,17 +167,17 @@
             color: white;
         }
         .login-qr-card > div:first-child div:first-child {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 5px;
         }
         .login-qr-card > div:first-child div:last-child {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
         .login-qr-card img {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 12px;
             border: 2px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -188,9 +200,14 @@
             .login-qr-card {
                 flex-direction: column;
                 text-align: center;
+                padding: 15px;
             }
             .login-qr-card > div:first-child {
                 text-align: center;
+            }
+            .login-qr-card img {
+                width: 100px;
+                height: 100px;
             }
         }
 
@@ -283,8 +300,11 @@
     <div id="login-overlay">
         <div class="login-container">
             <div class="login-card">
-                <div id="login-form">
+                <div class="title-wrapper">
+                    <img src="logo.jpg" alt="OPENMONKEY AI Logo">
                     <h2>OPENMONKEY AI</h2>
+                </div>
+                <div id="login-form">
                     <div class="subtitle">智能运营诊断系统 · 登录</div>
                     <input type="text" id="login-username" placeholder="用户名">
                     <input type="password" id="login-password" placeholder="密码">
@@ -293,7 +313,6 @@
                     <div class="auth-toggle" onclick="showRegister()">没有账号？立即注册</div>
                 </div>
                 <div id="register-form" style="display: none;">
-                    <h2>注册新账号</h2>
                     <div class="subtitle">创建普通用户账户</div>
                     <input type="text" id="reg-username" placeholder="用户名">
                     <input type="password" id="reg-password" placeholder="密码">
