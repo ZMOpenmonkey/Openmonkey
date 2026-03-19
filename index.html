@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
     <title>OPENMONKEY AI · 智能诊断版</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -23,23 +23,23 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 20px;
+            padding: 16px;
         }
         .login-container {
             display: flex;
             max-width: 1000px;
             width: 100%;
             background: rgba(255,255,255,0.1);
-            border-radius: 32px;
+            border-radius: 28px;
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: 16px;
         }
         .login-card {
             flex: 1;
-            margin-right: 20px;
+            margin-right: 16px;
             background: white;
             border-radius: 24px;
-            padding: 40px;
+            padding: 32px 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             text-align: center;
         }
@@ -49,6 +49,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 8px;
+            flex-wrap: wrap;
         }
         .login-card .title-wrapper img {
             height: 40px;
@@ -56,15 +57,18 @@
             border-radius: 8px;
         }
         .login-card h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #1e2b4a;
             margin: 0;
         }
+        @media (max-width: 480px) {
+            .login-card h2 { font-size: 1.5rem; }
+        }
         .login-card .subtitle {
             color: #64748b;
-            margin-bottom: 32px;
-            font-size: 0.95rem;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
         }
         .login-card input {
             width: 100%;
@@ -117,16 +121,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 30px;
+            padding: 20px;
         }
         .login-info h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
             font-weight: 600;
         }
         .login-info p {
             font-size: 1rem;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             opacity: 0.9;
         }
         .login-info ul {
@@ -134,8 +138,8 @@
             padding: 0;
         }
         .login-info li {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
         }
@@ -151,15 +155,16 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .login-qr-card {
-            margin-top: 30px;
+            margin-top: 24px;
             background: rgba(255,255,255,0.2);
             border-radius: 16px;
-            padding: 20px;
+            padding: 16px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             backdrop-filter: blur(5px);
         }
         .login-qr-card > div:first-child {
@@ -167,17 +172,17 @@
             color: white;
         }
         .login-qr-card > div:first-child div:first-child {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
         .login-qr-card > div:first-child div:last-child {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
         .login-qr-card img {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 12px;
             border: 2px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -188,115 +193,103 @@
             }
             .login-card {
                 margin-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
+                padding: 24px 16px;
             }
             .login-info {
                 text-align: center;
-                padding: 20px;
+                padding: 16px;
             }
             .login-info li {
                 justify-content: center;
+                text-align: left;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
             }
             .login-qr-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 15px;
+                padding: 16px;
             }
             .login-qr-card > div:first-child {
                 text-align: center;
             }
             .login-qr-card img {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
             }
         }
 
-        /* 原有其他样式保持不变 */
+        /* 主应用样式 */
         #main-app { display:none; }
-        .header { background:linear-gradient(135deg,#1e2b4a,#2d3a5e); color:white; padding:20px 30px; border-radius:20px; margin-bottom:25px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; }
-        .header-left { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
-        .logo-image { height:48px; width:auto; border-radius:8px; object-fit:contain; }
-        .header h1 { font-size:1.8rem; font-weight:600; margin:0; }
-        .badge { background:rgba(255,255,255,0.15); padding:5px 15px; border-radius:30px; font-size:0.9rem; border:1px solid rgba(255,255,255,0.3); }
-        .user-info { display:flex; align-items:center; gap:15px; flex-wrap:wrap; justify-content:flex-end; }
-        .username { font-weight:600; font-size:0.95rem; }
-        .credits-badge { background:#4a6fa5; padding:4px 12px; border-radius:20px; color:white; font-size:0.75rem; font-weight:500; white-space:nowrap; }
-        .role-badge { background:rgba(255,215,0,0.2); padding:4px 10px; border-radius:20px; font-size:0.75rem; border:1px solid rgba(255,215,0,0.5); }
-        .logout-btn { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); color:white; padding:8px 20px; border-radius:40px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:0.2s; }
+        .header { background:linear-gradient(135deg,#1e2b4a,#2d3a5e); color:white; padding:16px 24px; border-radius:20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+        .header-left { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        .logo-image { height:40px; width:auto; border-radius:8px; object-fit:contain; }
+        .header h1 { font-size:1.5rem; font-weight:600; margin:0; }
+        .badge { background:rgba(255,255,255,0.15); padding:4px 12px; border-radius:30px; font-size:0.8rem; border:1px solid rgba(255,255,255,0.3); }
+        .user-info { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+        .username { font-weight:600; font-size:0.9rem; }
+        .credits-badge { background:#4a6fa5; padding:4px 10px; border-radius:20px; color:white; font-size:0.7rem; font-weight:500; white-space:nowrap; }
+        .role-badge { background:rgba(255,215,0,0.2); padding:4px 8px; border-radius:20px; font-size:0.7rem; border:1px solid rgba(255,215,0,0.5); }
+        .logout-btn { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); color:white; padding:6px 16px; border-radius:40px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:0.2s; }
         .logout-btn:hover { background:rgba(255,255,255,0.2); }
-        .tabs { display:flex; gap:10px; background:white; padding:8px; border-radius:50px; margin-bottom:25px; flex-wrap:wrap; }
-        .tab { padding:12px 28px; border-radius:40px; background:transparent; font-size:1rem; font-weight:600; cursor:pointer; transition:0.2s; color:#64748b; white-space:nowrap; }
+        .tabs { display:flex; gap:8px; background:white; padding:6px; border-radius:40px; margin-bottom:20px; flex-wrap:wrap; justify-content:center; }
+        .tab { padding:8px 20px; border-radius:40px; background:transparent; font-size:0.9rem; font-weight:600; cursor:pointer; transition:0.2s; color:#64748b; white-space:nowrap; }
         .tab.active { background:#1e2b4a; color:white; box-shadow:0 4px 10px rgba(30,43,74,0.3); }
-        .card { background:white; border-radius:16px; padding:20px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
-        .card-title { font-size:1.2rem; font-weight:600; margin-bottom:15px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0; padding-bottom:8px; flex-wrap:wrap; }
-        .dashboard-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:20px; }
-        @media (max-width:600px) { .dashboard-grid { grid-template-columns:repeat(2,1fr); } }
-        .metric-card { background:#f8fafc; padding:16px; border-radius:12px; text-align:center; border-top:4px solid #3b5a9e; }
-        .metric-card .value { font-size:1.6rem; font-weight:700; color:#0f2b3f; }
-        .metric-card .label { font-size:0.8rem; color:#64748b; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
-        .status-indicator { display:inline-block; padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; margin-top:8px; }
+        @media (max-width: 600px) {
+            .tab { padding:6px 12px; font-size:0.8rem; }
+        }
+        .card { background:white; border-radius:16px; padding:16px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
+        .card-title { font-size:1.1rem; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0; padding-bottom:8px; flex-wrap:wrap; }
+        .dashboard-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:16px; }
+        @media (max-width: 600px) { .dashboard-grid { grid-template-columns:repeat(2,1fr); gap:8px; } }
+        .metric-card { background:#f8fafc; padding:12px; border-radius:12px; text-align:center; border-top:4px solid #3b5a9e; }
+        .metric-card .value { font-size:1.3rem; font-weight:700; color:#0f2b3f; }
+        .metric-card .label { font-size:0.7rem; color:#64748b; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
+        .status-indicator { display:inline-block; padding:4px 8px; border-radius:20px; font-size:0.7rem; font-weight:600; margin-top:6px; }
         .status-good { background:#e8f5e9; color:#2e7d32; }
         .status-warning { background:#fff3e0; color:#ef6c00; }
         .status-bad { background:#ffebee; color:#c62828; }
-        .btn-group { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; justify-content:flex-start; }
-        .btn { padding:12px 24px; border:none; border-radius:40px; font-size:0.95rem; font-weight:600; cursor:pointer; transition:0.2s; background:#e2e8f0; color:#1e293b; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+        .btn-group { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; justify-content:flex-start; }
+        .btn { padding:10px 20px; border:none; border-radius:40px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:0.2s; background:#e2e8f0; color:#1e293b; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
         .btn-primary { background:#1e2b4a; color:white; }
         .btn-primary:hover { background:#2d3a5e; }
         .btn-success { background:#0e5a3c; color:white; }
-        .data-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
-        .data-table th { background:#f1f5f9; padding:12px; text-align:left; font-weight:600; cursor:pointer; user-select:none; }
-        .data-table th:hover { background:#e2e8f0; }
-        .data-table td { padding:10px 12px; border-bottom:1px solid #e2e8f0; }
-        .sort-indicator { margin-left:5px; font-size:0.8rem; }
-        .input-field { width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:12px; font-size:0.95rem; margin-bottom:15px; }
-        .input-field:focus { border-color:#3b5a9e; outline:none; }
-        .upload-area { border:2px dashed #cbd5e1; border-radius:16px; padding:30px; text-align:center; background:#f8fafc; cursor:pointer; margin-bottom:15px; }
-        .upload-area:hover { border-color:#3b5a9e; background:#f1f5f9; }
-        .gemini-box { background:#f0f5ff; border:1px solid #cbd5e1; border-radius:16px; padding:20px; margin-top:20px; }
-        .gemini-response { background:#1e2b4a; color:#e0f0ff; padding:20px; border-radius:12px; font-size:0.95rem; line-height:1.6; white-space:pre-wrap; margin-top:10px; }
-        footer { text-align:center; color:#64748b; padding:30px 0 10px; font-size:0.9rem; }
-        .file-name { font-size:0.9rem; color:#1e2b4a; margin-top:5px; }
-        .context-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin-top:15px; }
-        .context-item { display:flex; flex-direction:column; gap:5px; }
-        .context-item label { font-weight:600; font-size:0.9rem; color:#2d3a5e; }
-        .context-item input { padding:10px 12px; border:2px solid #e2e8f0; border-radius:10px; font-size:0.95rem; }
-        .context-item input:focus { border-color:#3b5a9e; outline:none; }
-
-        /* 响应式优化 */
-        @media (max-width: 768px) {
-            .header { flex-direction: column; align-items: stretch; }
-            .header-left { justify-content: center; }
-            .user-info { justify-content: center; }
-            .btn-group { justify-content: center; }
-            .tab { padding: 8px 16px; font-size: 0.9rem; }
-            .card { padding: 15px; }
-            .metric-card .value { font-size: 1.3rem; }
+        @media (max-width: 480px) {
+            .btn { width:100%; justify-content:center; }
         }
-
+        .data-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+        .data-table th { background:#f1f5f9; padding:10px 8px; text-align:left; font-weight:600; cursor:pointer; user-select:none; }
+        .data-table th:hover { background:#e2e8f0; }
+        .data-table td { padding:8px; border-bottom:1px solid #e2e8f0; }
+        .sort-indicator { margin-left:4px; font-size:0.7rem; }
         @media (max-width: 600px) {
             .data-table {
                 display: block;
                 overflow-x: auto;
                 white-space: nowrap;
             }
-            .data-table th, .data-table td {
-                padding: 8px 10px;
-            }
-            .context-grid {
-                grid-template-columns: 1fr;
-            }
+            .data-table th, .data-table td { padding:6px 4px; }
         }
-
-        @media (max-width: 480px) {
-            body { padding: 10px; }
-            .login-card { padding: 25px; }
-            .header h1 { font-size: 1.5rem; }
-            .badge { font-size: 0.8rem; }
-        }
+        .input-field { width:100%; padding:12px 14px; border:2px solid #e2e8f0; border-radius:12px; font-size:0.95rem; margin-bottom:12px; }
+        .input-field:focus { border-color:#3b5a9e; outline:none; }
+        .upload-area { border:2px dashed #cbd5e1; border-radius:16px; padding:20px; text-align:center; background:#f8fafc; cursor:pointer; margin-bottom:12px; }
+        .upload-area:hover { border-color:#3b5a9e; background:#f1f5f9; }
+        .upload-area p { font-size:0.9rem; }
+        .gemini-response { background:#1e2b4a; color:#e0f0ff; padding:16px; border-radius:12px; font-size:0.9rem; line-height:1.6; white-space:pre-wrap; margin-top:10px; }
+        footer { text-align:center; color:#64748b; padding:20px 0 5px; font-size:0.8rem; }
+        .file-name { font-size:0.85rem; color:#1e2b4a; margin-top:5px; }
+        .context-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px; }
+        @media (max-width: 600px) { .context-grid { grid-template-columns:1fr; } }
+        .context-item { display:flex; flex-direction:column; gap:4px; }
+        .context-item label { font-weight:600; font-size:0.9rem; color:#2d3a5e; }
+        .context-item input { padding:8px 12px; border:2px solid #e2e8f0; border-radius:10px; font-size:0.9rem; }
+        .context-item input:focus { border-color:#3b5a9e; outline:none; }
     </style>
 </head>
 <body>
-    <!-- 登录遮罩层（新设计） -->
+    <!-- 登录遮罩层 -->
     <div id="login-overlay">
         <div class="login-container">
             <div class="login-card">
@@ -332,7 +325,6 @@
                     <li>安全可靠，数据隔离</li>
                     <li>会员余额管理，按次付费</li>
                 </ul>
-                <!-- 登录界面的二维码卡片 -->
                 <div class="login-qr-card">
                     <div>
                         <div>💬 联系管理员</div>
@@ -379,7 +371,6 @@
         <div id="panel-ads" class="panel" style="display: none;">
             <div class="card">
                 <div class="card-title">🎯 广告效果概览</div>
-                <!-- 用于显示广告时间范围备注 -->
                 <div id="adDateRangeNote" style="margin-bottom:10px; font-size:0.9rem; color:#3b5a9e;"></div>
                 <div class="dashboard-grid" id="adKpiGrid"></div>
             </div>
@@ -517,7 +508,7 @@
 
     <script>
         // ---------- 配置 ----------
-        const API_BASE = 'https://c883ad2b-9df7-4643-8350-e2d0b7e3d6a8-00-wvhoeidfeotw.janeway.replit.dev/api'; // 请替换为你的实际后端地址
+        const API_BASE = 'https://c883ad2b-9df7-4643-8350-e2d0b7e3d6a8-00-wvhoeidfeotw.janeway.replit.dev/api'; // 替换为你的实际后端地址
         let authToken = localStorage.getItem('authToken') || null;
         let currentUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
 
@@ -527,7 +518,6 @@
         let shopContext = JSON.parse(localStorage.getItem('shop_context')) || {
             market: '巴西', platform: 'Shopee', category: '时尚饰品', priceRange: '24-34'
         };
-        // 存储广告时间范围，用于备注和日均计算
         let adDateRange = { start: null, end: null, days: 0 };
 
         // ---------- 带认证的 fetch ----------
@@ -631,7 +621,6 @@
             showLogin();
         };
 
-        // 加载用户数据（店铺和广告）
         async function loadUserData() {
             try {
                 const salesRes = await authFetch('/sales-data');
@@ -645,7 +634,6 @@
             }
         }
 
-        // 保存到后端
         async function saveSalesData() {
             await authFetch('/sales-data', { method: 'POST', body: JSON.stringify({ data: salesData }) });
         }
@@ -653,7 +641,6 @@
             await authFetch('/ad-groups', { method: 'POST', body: JSON.stringify({ data: adGroups }) });
         }
 
-        // 渲染选项卡（根据角色）
         function renderTabs() {
             const isAdmin = currentUser && currentUser.role === 'admin';
             const tabs = [
@@ -687,7 +674,6 @@
             if (tab === 'admin') refreshAdminPanel();
         };
 
-        // 管理员面板刷新
         window.refreshAdminPanel = async function() {
             const tbody = document.getElementById('adminUserBody');
             tbody.innerHTML = '<tr><td colspan="9">加载中...</td></tr>';
@@ -733,7 +719,6 @@
                     msgDiv.innerText = `充值成功！用户 ${username} 当前余额: ${res.newCredits} 次`;
                     document.getElementById('recharge-username').value = '';
                     document.getElementById('recharge-amount').value = '';
-                    // 刷新管理员面板
                     refreshAdminPanel();
                 } else {
                     msgDiv.style.color = '#c62828';
@@ -772,7 +757,6 @@
             }
         };
 
-        // 店铺背景（本地存储）
         window.saveShopContext = function() {
             shopContext = {
                 market: document.getElementById('contextMarket').value.trim() || '巴西',
@@ -793,7 +777,6 @@
             return `【店铺背景】市场：${shopContext.market}；平台：${shopContext.platform}；产品品类：${shopContext.category}；价格区间：${shopContext.priceRange}雷亚尔。\n`;
         }
 
-        // ---------- 辅助函数 ----------
         function updateFileName(inputId, displayId) {
             const file = document.getElementById(inputId).files[0];
             document.getElementById(displayId).innerText = file ? file.name : '未选择文件';
@@ -816,7 +799,6 @@
             }
         }
 
-        // 更新仪表盘（去除了广告相关指标）
         function updateDashboard() {
             if (salesData.length === 0) {
                 document.getElementById('kpiGrid').innerHTML = '<div style="grid-column:1/-1; text-align:center;">暂无数据，请导入</div>';
@@ -850,7 +832,6 @@
                 <div class="metric-card"><div class="value">R$${avgRevenue.toFixed(2)}</div><div class="label">平均付款金额</div></div>
             `;
 
-            // 每日明细表格中去掉广告列
             document.getElementById('dailyTable').innerHTML = `
                 <tr><th>日期</th><th>访客</th><th>加购</th><th>付款</th><th>销售额</th></tr>
                 ${recent.slice().reverse().map(d=>`
@@ -880,7 +861,6 @@
                 <div class="metric-card"><div class="value">${(totalRevenue/totalSpend).toFixed(2)}</div><div class="label">整体ROAS</div></div>
                 <div class="metric-card"><div class="value">R$${avgDailySpend}</div><div class="label">日均广告花费</div></div>
             `;
-            // 显示时间范围备注
             const noteEl = document.getElementById('adDateRangeNote');
             if (adDateRange.start && adDateRange.end) {
                 noteEl.innerText = `广告数据为过去 ${adDateRange.days} 天汇总（${adDateRange.start} 至 ${adDateRange.end}）`;
@@ -913,7 +893,6 @@
             }).join('');
         }
 
-        // ---------- 导入解析函数 ----------
         function parseShopExcel(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -960,11 +939,10 @@
                         for (let i = headerRowIndex + 1; i < rows.length; i++) {
                             const row = rows[i];
                             if (!row || !row[colIndex.date]) continue;
-                            // 修复日期解析：支持不带时间的纯日期
                             const dateStr = String(row[colIndex.date]).trim();
                             let datePart = dateStr;
                             if (dateStr.includes(' ')) {
-                                datePart = dateStr.split(' ')[0]; // 如果有时间，只取日期部分
+                                datePart = dateStr.split(' ')[0];
                             }
                             const [day, month, year] = datePart.split('/');
                             if (!day || !month || !year) continue;
@@ -1043,14 +1021,11 @@
             });
         }
 
-        // 最终精确版广告解析
         function parseAdFromLines(lines, resolve, reject) {
             try {
-                console.log('===== 广告解析开始 =====');
                 let adStartDate = null;
                 let adEndDate = null;
 
-                // 精确查找以"时间,"开头的行
                 let timeLine = null;
                 for (let line of lines) {
                     if (line.startsWith('时间,')) {
@@ -1058,10 +1033,8 @@
                         break;
                     }
                 }
-                console.log('找到的时间行:', timeLine);
 
                 if (timeLine) {
-                    // 匹配两个日期
                     const dateMatches = timeLine.match(/(\d{4}\/\d{2}\/\d{2})\s*-\s*(\d{4}\/\d{2}\/\d{2})/);
                     if (dateMatches && dateMatches.length >= 3) {
                         const start = dateMatches[1];
@@ -1071,7 +1044,6 @@
                         adStartDate = `${y1}-${m1}-${d1}`;
                         adEndDate = `${y2}-${m2}-${d2}`;
                     } else {
-                        // 尝试单个日期
                         const singleMatch = timeLine.match(/(\d{4}\/\d{2}\/\d{2})/);
                         if (singleMatch) {
                             const [y, m, d] = singleMatch[1].split('/');
@@ -1080,10 +1052,6 @@
                     }
                 }
 
-                console.log('解析后开始日期:', adStartDate);
-                console.log('解析后结束日期:', adEndDate);
-
-                // 查找广告数据标题行（以“排序,”开头）
                 let headerRow = null;
                 let dataStart = -1;
                 for (let i = 0; i < lines.length; i++) {
@@ -1132,7 +1100,6 @@
                     }
                 }
 
-                // 计算天数
                 let days = 0;
                 if (adStartDate && adEndDate) {
                     const start = new Date(adStartDate);
@@ -1143,7 +1110,6 @@
                     days = 1;
                 }
 
-                console.log('计算得到的天数:', days);
                 resolve({
                     startDate: adStartDate,
                     endDate: adEndDate,
@@ -1157,7 +1123,6 @@
             }
         }
 
-        // ---------- 独立导入函数 ----------
         window.importShopData = async function() {
             const shopFile = document.getElementById('shopFile').files[0];
             if (!shopFile) {
@@ -1195,7 +1160,6 @@
             }
         };
 
-        // 加载示例数据
         window.loadSampleData = async function() {
             salesData = [{ date:'2026-03-14', visitors:1745, bounce:320, cart:280, paying:28, revenue:734.56, search:426 }];
             adGroups = [
@@ -1228,9 +1192,7 @@
             a.href=url; a.download='shopee_数据.json'; a.click();
         };
 
-        // ---------- 智能诊断（带余额检查）----------
         window.runDeepSeekAnalysis = async function(type) {
-            // 前端余额检查
             if (currentUser && currentUser.credits <= 0) {
                 alert('您的诊断次数已用完，请联系管理员充值');
                 return;
@@ -1248,7 +1210,6 @@
                 const res = await authFetch('/deepseek', { method:'POST', body:JSON.stringify({prompt}) });
                 if (res.success) {
                     document.getElementById('deepseekResult').innerHTML = res.text.replace(/\n/g,'<br>');
-                    // 更新余额显示
                     if (res.creditsRemaining !== undefined) {
                         currentUser.credits = res.creditsRemaining;
                         document.getElementById('display-credits').innerText = `余额: ${res.creditsRemaining}次`;
@@ -1287,7 +1248,6 @@
             }
         };
 
-        // 初始化检查登录状态
         (async function init() {
             if (authToken && currentUser) {
                 document.getElementById('display-username').innerText = currentUser.username;
